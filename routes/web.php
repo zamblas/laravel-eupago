@@ -22,5 +22,5 @@ Route::prefix('mbway')->name('mbway.')->group(function () {
 
 
 Route::get('/callback', function (Request $request) {
-    Log::info($request);
+    Log::info(print_r($request, true));
 });
