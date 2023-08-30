@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,5 +30,5 @@ Route::get('/callback', function (Request $request) {
     //     dd($th->getMessage());
     // }
 
-    return response()->json($request->all());
+    return response()->json($request);
 });
