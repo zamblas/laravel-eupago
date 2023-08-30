@@ -20,7 +20,14 @@ Route::prefix('mbway')->name('mbway.')->group(function () {
     Route::get('callback', 'MBWayController@callback')->name('callback');
 });
 
-
 Route::get('/callback', function (Request $request) {
-    Log::info(print_r($request, true));
+    try {
+        Log::info('teste log');
+        // Log::info($request->valor);
+        Log::info('My message', [$request]);
+    } catch (\Throwable $th) {
+        dd($th->getMessage());
+    }
+
+    return response()->json(['teste' => 2]);
 });
