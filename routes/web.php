@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Request;
+use CodeTech\EuPago\Http\Controllers\MBController;
+use CodeTech\EuPago\Http\Controllers\MBWayController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,14 +23,17 @@ Route::prefix('mbway')->name('mbway.')->group(function () {
     Route::get('callback', 'MBWayController@callback')->name('callback');
 });
 
-Route::get('/callback', function (Request $request) {
-    // try {
-    //     Log::info('teste log');
-    //     // Log::info($request->valor);
-    //     Log::info('My message', [$request]);
-    // } catch (\Throwable $th) {
-    //     dd($th->getMessage());
-    // }
+Route::get('/callback', function () {
+    $r = (object) Request::all();
 
-    return response()->json($request);
+    if($r->mp){
+        $class = match ($r->mp) {
+            'PC:PT' => MBController::class,
+            'MW:PT' => MBWayController::class,
+        };
+
+        return redirect()->action([$class, 'callback'], (array) $r);
+    }else{
+        \Log::info('mp column not found: ' . var_export($r, true));
+    }
 });
