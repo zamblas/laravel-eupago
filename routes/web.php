@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Log;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,5 +22,5 @@ Route::prefix('mbway')->name('mbway.')->group(function () {
 
 
 Route::get('/callback', function (Request $request) {
-    dd($request);
+    Log::info($request);
 });
