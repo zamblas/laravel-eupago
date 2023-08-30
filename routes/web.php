@@ -21,13 +21,13 @@ Route::prefix('mbway')->name('mbway.')->group(function () {
 });
 
 Route::get('/callback', function (Request $request) {
-    try {
-        Log::info('teste log');
-        // Log::info($request->valor);
-        Log::info('My message', [$request]);
-    } catch (\Throwable $th) {
-        dd($th->getMessage());
-    }
+    // try {
+    //     Log::info('teste log');
+    //     // Log::info($request->valor);
+    //     Log::info('My message', [$request]);
+    // } catch (\Throwable $th) {
+    //     dd($th->getMessage());
+    // }
 
     return response()->json(['teste' => 2]);
 });
