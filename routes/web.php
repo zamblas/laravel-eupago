@@ -29,5 +29,5 @@ Route::get('/callback', function (Request $request) {
     //     dd($th->getMessage());
     // }
 
-    return response()->json(['teste' => 2]);
+    return response()->json($request->all());
 });
